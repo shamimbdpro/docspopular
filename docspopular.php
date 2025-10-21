@@ -4,8 +4,8 @@
  * Plugin URI: https://docspopular.com
  * Description: A beautiful and minimal documentation system for WordPress themes and plugins
  * Version: 1.0.0
- * Author: DocsPopular Team
- * Author URI: https://docspopular.com
+ * Author: Shamim Hasan
+ * Author URI: https://codepopular.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: docspopular
@@ -28,6 +28,7 @@ require_once DOCSPOPULAR_PLUGIN_DIR . 'includes/taxonomy.php';
 require_once DOCSPOPULAR_PLUGIN_DIR . 'includes/shortcodes.php';
 require_once DOCSPOPULAR_PLUGIN_DIR . 'includes/template-functions.php';
 require_once DOCSPOPULAR_PLUGIN_DIR . 'includes/admin-filters.php';
+require_once DOCSPOPULAR_PLUGIN_DIR . 'includes/priority-system.php';
 
 /**
  * Check if we should load DocsPopular assets

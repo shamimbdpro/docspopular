@@ -49,6 +49,7 @@ add_action( 'restrict_manage_posts', 'docspopular_add_category_filter' );
 
 /**
  * Filter the query to show only selected category
+ * This runs with lower priority to not interfere with priority ordering
  */
 function docspopular_filter_by_category( $query ) {
     global $pagenow, $typenow;
@@ -71,7 +72,7 @@ function docspopular_filter_by_category( $query ) {
         ) );
     }
 }
-add_action( 'pre_get_posts', 'docspopular_filter_by_category' );
+add_action( 'pre_get_posts', 'docspopular_filter_by_category', 5 );
 
 /**
  * Add custom column for category in admin list
