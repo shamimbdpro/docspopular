@@ -19,33 +19,45 @@
      * Handle documentation navigation clicks
      */
     function handleDocNavigation() {
+        // Handle sidebar navigation
         $('.docspopular-nav-link').on('click', function(e) {
             e.preventDefault();
-            
-            const $link = $(this);
-            const docId = $link.data('doc-id');
-            const targetDoc = $('#doc-' + docId);
-            
-            if (targetDoc.length) {
-                // Update active states
-                $('.docspopular-nav-link').removeClass('active');
-                $link.addClass('active');
-                
-                // Hide all articles and show target
-                $('.docspopular-article').removeClass('active');
-                targetDoc.addClass('active');
-                
-                // Scroll to top of content area smoothly
-                $('html, body').animate({
-                    scrollTop: $('.docspopular-content').offset().top - 20
-                }, 400);
-                
-                // Update URL hash without jumping
-                if (history.pushState) {
-                    history.pushState(null, null, '#doc-' + docId);
-                }
-            }
+            navigateToDoc($(this));
         });
+        
+        // Handle prev/next buttons
+        $('.docspopular-nav-button').on('click', function(e) {
+            e.preventDefault();
+            navigateToDoc($(this));
+        });
+    }
+    
+    /**
+     * Navigate to a specific doc
+     */
+    function navigateToDoc($link) {
+        const docId = $link.data('doc-id');
+        const targetDoc = $('#doc-' + docId);
+        
+        if (targetDoc.length) {
+            // Update sidebar active states
+            $('.docspopular-nav-link').removeClass('active');
+            $('.docspopular-nav-link[data-doc-id="' + docId + '"]').addClass('active');
+            
+            // Hide all articles and show target
+            $('.docspopular-article').removeClass('active');
+            targetDoc.addClass('active');
+            
+            // Scroll to top of content area smoothly
+            $('html, body').animate({
+                scrollTop: $('.docspopular-content').offset().top - 20
+            }, 400);
+            
+            // Update URL hash without jumping
+            if (history.pushState) {
+                history.pushState(null, null, '#doc-' + docId);
+            }
+        }
     }
 
     /**
